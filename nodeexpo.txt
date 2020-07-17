@@ -1,0 +1,10 @@
+FROM node:7.10.0-alpine
+RUN mkdir -p /code
+WORKDIR /code
+
+RUN npm set progress=false && \
+    npm install -g exp
+RUN exp login --username "sridhar.shenoy.18" --password "RadhaGopinath18"
+CMD [ "exp", "start", "--send-to", "sridhar.shenoy@gmail.com" ]
+
+EXPOSE 19000

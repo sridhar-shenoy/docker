@@ -1,0 +1,16 @@
+FROM centos:centos8
+RUN yum -y update
+RUN yum -y install nodejs
+RUN yum -y install sudo
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install yarn
+RUN yum -y install git 
+COPY package.json package.json
+RUN npm install expo-cli --global
+RUN npm install -g create-react-native-app
+RUN npm install -g react-native-git-upgrade
+RUN react-native-git-upgrade
+
+
+
+
