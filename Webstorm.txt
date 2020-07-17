@@ -1,0 +1,13 @@
+FROM centos:centos8
+
+RUN yum -y update
+RUN curl -L   -O
+RUN tar -xvf ideaIC-2020.1.3.tar.gz
+RUN yum -y install java-sdk
+RUN yum -y install git
+RUN useradd -ms /bin/bash sridhar
+USER sridhar
+WORKDIR /home/sridhar
+#RUN git clone https://github.com/sridhar-shenoy/learn.git 
+RUN git 
+CMD ./idea-IC-201.8538.31/bin//idea.sh
