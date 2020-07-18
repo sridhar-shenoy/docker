@@ -1,0 +1,21 @@
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get -y upgrade && apt-get -y install default-jdk 
+RUN apt-get -y install wget
+RUN wget https://download.jetbrains.com/python/pycharm-community-2018.3.5.tar.gz
+RUN tar -xvf pycharm-community-2018.3.5.tar.gz
+
+# Replace 1000 with your user / group id
+RUN export uid=1000 gid=1000 && \
+    mkdir -p /home/developer && \
+    echo "developer:x:${uid}:${gid}:Developer,,,:/home/developer:/bin/bash" >> /etc/passwd && \
+    echo "developer:x:${uid}:" >> /etc/group && \
+    echo "developer ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/developer && \
+    chmod 0440 /etc/sudoers.d/developer && \
+    chown ${uid}:${gid} -R /home/developer
+RUN mkdir workspace
+RUN chown developer:developer workspace
+RUN chmod 777 workspace
+#USER developer
+#ENV HOME /home/developer
+#CMD ./pycharm-community-2018.3.5/bin/pycharm.sh 
