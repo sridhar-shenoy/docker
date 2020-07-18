@@ -1,0 +1,21 @@
+version: '3'
+services:
+ expo:
+  image: terminal:latest
+  ports:
+   - "19000:19000"
+   - "19001:19001"
+  volumes:
+   - C:\Users\sridh\Documents\docker\docspace\expo\myproject:/home/sridhar
+  working_dir: /home/sridhar
+  command: expo start  
+
+ webstorm :
+  image: terminal:latest
+  volumes:
+     - C:\Users\sridh\Documents\docker\docspace\intellij\sridhar:/home/sridhar 
+     - C:\Users\sridh\Documents\docker\docspace\:/c
+  environment:
+   - DISPLAY=192.168.0.103:0.0
+  working_dir: /home/sridhar
+  command: /WebStorm-202.6250.10/bin/webstorm.sh
